@@ -6,7 +6,7 @@
 #    By: kbatz <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/25 21:10:51 by kbatz             #+#    #+#              #
-#    Updated: 2019/02/21 07:27:39 by kbatz            ###   ########.fr        #
+#    Updated: 2019/03/03 17:01:05 by kbatz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ TEST	= $(patsubst $(TESTDIR),%,$(wildcard $(TESTDIR)*))
 LFLAG	= $(addprefix -L,$(LIBDIR)) $(addprefix -,$(patsubst lib%,l%,$(LIB)))
 IFLAG	= $(addprefix -I,$(HDRDIR)) $(addprefix -I,$(LHD))
 CFLAG	= -Wall -Wextra -Werror
+CC		= gcc
 
 # **************************************************************************** #
 
@@ -42,10 +43,10 @@ vpath %.o $(OBJDIR)
 all: lib.all $(NAME)
 
 $(NAME): $(OBJDIR) $(OBJ)
-	gcc $(addprefix $(OBJDIR), $(OBJ)) -o $(NAME) $(IFLAG) $(LFLAG)
+	$(CC) $(addprefix $(OBJDIR), $(OBJ)) -o $(NAME) $(IFLAG) $(LFLAG)
 
 $(OBJ): %.o: %.c $(HDR)
-	gcc $(CFLAG) $(IFLAG) -c $< -o $(OBJDIR)$@
+	$(CC) $(CFLAG) $(IFLAG) -c $< -o $(OBJDIR)$@
 
 $(OBJDIR):
 	mkdir $(OBJDIR)
@@ -68,7 +69,7 @@ norm:
 	norminette $(addprefix $(HDRDIR), $(HDR))
 
 g: $(OBJDIR) $(OBJ)
-	gcc -g $(addprefix $(SRCDIR), $(SRC)) -o debug_$(NAME) $(IFLAG) $(LFLAG)
+	$(CC) -g $(addprefix $(SRCDIR), $(SRC)) -o debug_$(NAME) $(IFLAG) $(LFLAG)
 
 gclean:
 	rm -Rf debug_$(NAME)
