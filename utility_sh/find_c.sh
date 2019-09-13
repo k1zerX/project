@@ -6,9 +6,8 @@
 #    By: kbatz <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/20 18:09:35 by kbatz             #+#    #+#              #
-#    Updated: 2018/11/27 19:51:55 by kbatz            ###   ########.fr        #
+#    Updated: 2019/09/13 22:09:42 by kbatz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-ls -l | rev | cut -d ' ' -f 1 | rev | grep ".c$" | tr "\n" " " | rev | sed "s/ //" | rev > srcs
-ls -l | rev | cut -d ' ' -f 1 | rev | grep ".c$" | tr "\n" " " | rev | sed "s/ //" | rev
+ls -l $1 | rev | cut -d ' ' -f 1 | rev | grep ".c$" | rev | sed "s/ //" | rev
