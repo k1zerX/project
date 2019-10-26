@@ -6,31 +6,32 @@
 #    By: kbatz <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/25 21:10:51 by kbatz             #+#    #+#              #
-#    Updated: 2019/09/13 22:03:24 by kbatz            ###   ########.fr        #
+#    Updated: 2019/10/26 05:59:18 by kbatz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= project
-LIB		= libft
+NAME	=	fractol
+LIB		=	libft
 
 # **************************************************************************** #
 
-SRCDIR	= src/
-OBJDIR	= .obj/
-HDRDIR	= include/
-TESTDIR	= test/
+SRCDIR	=	src/
+OBJDIR	=	.obj/
+HDRDIR	=	include/
+TESTDIR	=	test/
 
 # **************************************************************************** #
 
-LIBDIR	= $(addsuffix /,$(LIB))
-SRC		= $(patsubst $(SRCDIR)%,%,$(wildcard $(SRCDIR)*.c))
-OBJ		= $(SRC:%.c=%.o)
-HDR		= $(wildcard $(HDRDIR)*.h)
-TEST	= $(patsubst $(TESTDIR)%,%,$(wildcard $(TESTDIR)*))
-LFLAG	= $(addprefix -L,$(LIBDIR)) $(addprefix -,$(patsubst lib%,l%,$(LIB)))
-IFLAG	= $(addprefix -I,$(HDRDIR)) $(addprefix -I,$(LIBDIR))
-CFLAG	= -Wall -Wextra -Werror
-CC		= gcc
+LIBDIR	=	$(addsuffix /,$(LIB))
+SRC		=	$(patsubst $(SRCDIR)%,%,$(wildcard $(SRCDIR)*.c))
+OBJ		=	$(SRC:%.c=%.o)
+HDR		=	$(wildcard $(HDRDIR)*.h)
+TEST	=	$(patsubst $(TESTDIR)%,%,$(wildcard $(TESTDIR)*))
+LFLAG	=	$(addprefix -L,$(LIBDIR)) $(addprefix -,$(patsubst lib%,l%,$(LIB))) -lmlx
+IFLAG	=	$(addprefix -I,$(HDRDIR)) $(addprefix -I,$(LIBDIR))
+FFLAG	=	-framework OpenGL -framework AppKit
+WFLAG	=	-Wall -Wextra -Werror
+CC		=	gcc
 
 # **************************************************************************** #
 
@@ -42,10 +43,10 @@ vpath %.o $(OBJDIR)
 all: lib.all $(NAME)
 
 $(NAME): $(OBJDIR) $(OBJ)
-	$(CC) $(addprefix $(OBJDIR), $(OBJ)) -o $(NAME) $(IFLAG) $(LFLAG)
+	$(CC) $(addprefix $(OBJDIR), $(OBJ)) -o $(NAME) $(IFLAG) $(LFLAG) $(FFLAG)
 
 $(OBJ): %.o: %.c $(HDR)
-	$(CC) $(CFLAG) $(IFLAG) -c $< -o $(OBJDIR)$@
+	$(CC) $(WFLAG) $(IFLAG) -c $< -o $(OBJDIR)$@
 
 $(OBJDIR):
 	mkdir $(OBJDIR)

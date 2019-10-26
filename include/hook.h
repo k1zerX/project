@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   project.h                                          :+:      :+:    :+:   */
+/*   hook.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kbatz <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/21 07:25:53 by kbatz             #+#    #+#             */
-/*   Updated: 2019/03/03 17:07:23 by kbatz            ###   ########.fr       */
+/*   Created: 2019/10/26 05:19:43 by kbatz             #+#    #+#             */
+/*   Updated: 2019/10/26 09:01:06 by kbatz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PROJECT_H
-# define PROJECT_H
+#ifndef HOOK_H
+# define HOOK_H
 
-# include "libft.h"
+int		ft_mouse_move(int x, int y, t_params *prms);
+int		ft_mouse_release(int button, int x, int y, t_params *prms);
+int		ft_mouse_press(int button, int x, int y, t_params *prms);
+int		ft_key_press(int keycode, t_params *prms);
 
 #endif
