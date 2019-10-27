@@ -1,7 +1,7 @@
 #ifndef GVARS_H
 # define GVARS_H
 
-#include "fractol.h"
+#include "fractals.h"
 #include <stdlib.h>
 
 t_fractal	g_fractals[FRACTALS_LEN] =
@@ -10,13 +10,19 @@ t_fractal	g_fractals[FRACTALS_LEN] =
 	{
 		"Mandelbrot\n",
 		11,
-		NULL
+		&mandelbrot
 	},
 	[JULIA] =
 	{
 		"Julia\n",
 		6,
-		NULL
+		&julia
+	},
+	[BEAUTIFUL] =
+	{
+		"Beautiful\n",
+		10,
+		&beautiful
 	}
 };
 

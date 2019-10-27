@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools.h                                            :+:      :+:    :+:   */
+/*   complex.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kbatz <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/26 05:24:50 by kbatz             #+#    #+#             */
-/*   Updated: 2019/10/27 21:41:48 by kbatz            ###   ########.fr       */
+/*   Created: 2019/10/27 20:10:55 by kbatz             #+#    #+#             */
+/*   Updated: 2019/10/27 20:12:00 by kbatz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TOOLS_H
-# define TOOLS_H
+#ifndef COMPLEX_H
+# define COMPLEX_H
 
-#include "fractol.h"
+typedef struct s_complex	t_complex;
 
-typedef struct s_close	t_close;
-
-struct					s_close
+struct						s_complex
 {
-	t_params			*prms;
-	int					n;
-	int					ind;
+	double					i;
+	double					r;
 };
 
-int						ft_close(t_close *close);
-void					reset_prms(t_params *prms);
-void					init_prms(t_params *prms, void *mlx);
+t_complex	complex_add(t_complex a, t_complex b);
+t_complex	complex_mul(t_complex a, t_complex b);
 
 #endif

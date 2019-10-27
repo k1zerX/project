@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools.h                                            :+:      :+:    :+:   */
+/*   fractal_motion.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kbatz <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/26 05:24:50 by kbatz             #+#    #+#             */
-/*   Updated: 2019/10/27 21:41:48 by kbatz            ###   ########.fr       */
+/*   Created: 2019/10/27 20:57:18 by kbatz             #+#    #+#             */
+/*   Updated: 2019/10/27 20:58:07 by kbatz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TOOLS_H
-# define TOOLS_H
-
 #include "fractol.h"
+#include "complex.h"
 
-typedef struct s_close	t_close;
-
-struct					s_close
+void	fractal_motion(t_params *prms, t_point p)
 {
-	t_params			*prms;
-	int					n;
-	int					ind;
-};
-
-int						ft_close(t_close *close);
-void					reset_prms(t_params *prms);
-void					init_prms(t_params *prms, void *mlx);
-
-#endif
+	prms->k = (t_complex){ \
+			4.0 * ((double)(prms->n - p.y) / (double)prms->n - 0.5), \
+			4.0 * ((double)p.x / (double)prms->m - 0.5)};
+}
